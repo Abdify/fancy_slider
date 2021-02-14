@@ -15,16 +15,17 @@ const KEY = '15674931-a9d714b6e9d654524df198e00&q';
 
 // show images 
 const showImages = (images) => {
-  imagesArea.style.display = 'block';
   gallery.innerHTML = '';
   // show gallery title
-  galleryHeader.style.display = 'flex';
   images.forEach(image => {
     let div = document.createElement('div');
     div.className = 'col-lg-3 col-md-4 col-xs-6 img-item mb-2';
     div.innerHTML = ` <img class="img-fluid img-thumbnail" onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">`;
     gallery.appendChild(div)
-  })
+  });
+
+  galleryHeader.style.display = 'flex';
+  imagesArea.style.display = 'block';
 
 }
 
@@ -135,7 +136,7 @@ const searchForImages = () => {
 searchBtn.addEventListener('click', searchForImages);
 //Enter key shortcut
 document.getElementById('search').addEventListener('keypress', (e) => {
-  if (e.keyCode === 13) {
+  if (e.key === 'Enter') {
     searchForImages();
   }
 })
@@ -150,10 +151,10 @@ document.getElementById('deselectBtn').addEventListener('click', () => {
   [...document.querySelectorAll('.added')].forEach(item => {
     item.classList.remove('added');
   })
-})
+});
 // Additional feature 2: Change image button
 document.getElementById('changeImage').addEventListener('click', () => {
   document.querySelector('.main').style.display = 'none';
   imagesArea.style.display = 'block';
   clearInterval(timer);
-})
+});
